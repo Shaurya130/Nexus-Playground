@@ -119,7 +119,7 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
-}: TooltipProps<any, any> & {
+}: TooltipProps<string | number, string> & {
   className?: string;
   indicator?: "line" | "dot" | "dashed";
   hideLabel?: boolean;
