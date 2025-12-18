@@ -1,7 +1,5 @@
-import { auth } from '@clerk/nextjs/server';
 import { PrismaClient } from '../../../generated/prisma';
-import { v2 as cloudinary, UploadStream } from 'cloudinary';
-import { transform } from 'next/dist/build/swc/generated-native';
+import { v2 as cloudinary } from 'cloudinary';
 import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
@@ -16,12 +14,8 @@ const prisma = new PrismaClient();
     interface CloudinaryUploadResult {
         public_id: string;
         bytes: number;
-        // format: string;
-        // width: number;
-        // height: number;
         duration?: number;
-        // secure_url: string;
-        [key: string]: any;
+        [key: string]: unknown;
     }
 
 export async function POST(request: NextRequest) {
@@ -44,10 +38,10 @@ export async function POST(request: NextRequest) {
 
 
         const formData = await request.formData();
-        const file = (formData as any).get("file") as File | null;
-        const title = (formData as any).get("title") as string;
-        const description = (formData as any).get("description") as string;
-        const originalSize = (formData as any).get("originalSize") as string;
+        const file = formData.get("file") as File | null;
+        const title = formData.get("title") as string;
+        const description = formData.get("description") as string;
+        const originalSize = formData.get("originalSize") as string;
 
         if(!file){
             return NextResponse.json({error: "File not found"}, {status: 400})

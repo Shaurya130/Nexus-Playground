@@ -96,6 +96,7 @@ const  VideoCard: React.FC<VideoCardProps> = ({video, onDownload}) => {
                 />
               )
             ) : (
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={getThumbnailUrl(video.publicId)}
                 alt={video.title}

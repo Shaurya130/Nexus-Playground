@@ -42,16 +42,15 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> &
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     // When `asChild` is true we render the Radix `Slot` which has a different
-    // prop typing than a native "button". Casting to `any` here keeps the
-    // component ergonomics while avoiding a complex polymorphic type dance.
-    const Comp: any = asChild ? Slot : "button";
+    // prop typing than a native "button". Using React.ComponentType for type safety.
+    const Comp = asChild ? Slot : "button";
 
     return (
       <Comp
         ref={ref}
         data-slot="button"
         className={cn(buttonVariants({ variant, size, className }))}
-        {...(props as any)}
+        {...props}
       />
     );
   },

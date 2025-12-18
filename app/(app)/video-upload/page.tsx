@@ -149,7 +149,7 @@ function VideoUpload() {
                             <li>Your video will be securely uploaded to cloud storage</li>
                             <li>Advanced compression will reduce file size while maintaining quality</li>
                             <li>Processing time varies from 30-60 seconds based on file size</li>
-                            <li>You'll receive the optimized video ready for download and sharing</li>
+                            <li>You&apos;ll receive the optimized video ready for download and sharing</li>
                         </ul>
                     </div>
                     <div className="card-actions justify-end">

@@ -53,7 +53,7 @@ export function Features() {
           </div>
           <h2 className="mb-4">Everything You Need in One Platform</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Powerful features designed to make media management effortless. From storage to optimization, we've got you covered.
+            Powerful features designed to make media management effortless. From storage to optimization, we&apos;ve got you covered.
           </p>
         </div>
 
