@@ -96,12 +96,14 @@ const  VideoCard: React.FC<VideoCardProps> = ({video, onDownload}) => {
                 />
               )
             ) : (
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={getThumbnailUrl(video.publicId)}
-                alt={video.title}
-                className="w-full h-full object-cover"
-              />
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={getThumbnailUrl(video.publicId)}
+                  alt={video.title}
+                  className="w-full h-full object-cover"
+                />
+              </>
             )}
             <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 bg-base-100 bg-opacity-70 px-1 sm:px-2 py-0.5 sm:py-1 rounded text-xs sm:text-sm flex items-center">
               <Clock size={12} className="sm:w-4 sm:h-4 mr-1" />
