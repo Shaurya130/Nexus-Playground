@@ -75,25 +75,26 @@ function Home() {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
             {/* Page Header */}
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold">My Videos</h1>
-                    <p className="text-base-content/70 mt-1">Manage and organize your video collection</p>
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">My Videos</h1>
+                    <p className="text-base-content/70 mt-1 text-sm sm:text-base">Manage and organize your video collection</p>
                 </div>
                 <div className="flex gap-2">
-                    <Link href="/video-upload" className="btn btn-primary">
+                    <Link href="/video-upload" className="btn btn-primary btn-sm sm:btn-md">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                         </svg>
-                        Upload Video
+                        <span className="hidden sm:inline">Upload Video</span>
+                        <span className="sm:hidden">Upload</span>
                     </Link>
                 </div>
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 <div className="stats shadow">
                     <div className="stat">
                         <div className="stat-figure text-primary">
@@ -136,8 +137,8 @@ function Home() {
 
             {/* Videos Section */}
             <div className="card bg-base-100 shadow-xl">
-                <div className="card-body">
-                    <h2 className="card-title">
+                <div className="card-body p-4 sm:p-6">
+                    <h2 className="card-title text-lg sm:text-xl">
                         Your Videos
                         {videos.length > 0 && (
                             <div className="badge badge-secondary">{videos.length}</div>
@@ -145,11 +146,11 @@ function Home() {
                     </h2>
                     
                     {videos.length === 0 ? (
-                        <div className="text-center py-12">
-                            <div className="text-6xl mb-4">📹</div>
-                            <h3 className="text-xl font-semibold mb-2">No videos uploaded yet</h3>
-                            <p className="text-base-content/60 mb-6">Start by uploading your first video to see it here</p>
-                            <Link href="/video-upload" className="btn btn-primary btn-wide">
+                        <div className="text-center py-8 sm:py-12">
+                            <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">📹</div>
+                            <h3 className="text-lg sm:text-xl font-semibold mb-2">No videos uploaded yet</h3>
+                            <p className="text-base-content/60 mb-4 sm:mb-6 text-sm sm:text-base">Start by uploading your first video to see it here</p>
+                            <Link href="/video-upload" className="btn btn-primary btn-sm sm:btn-md sm:btn-wide">
                                 Upload Your First Video
                             </Link>
                         </div>

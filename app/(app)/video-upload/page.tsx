@@ -50,30 +50,30 @@ function VideoUpload() {
 
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
             {/* Page Header */}
-            <div>
-                <h1 className="text-3xl font-bold">Upload Video</h1>
-                <p className="text-base-content/70 mt-1">Upload and process your videos with cloud optimization</p>
+            <div className="text-center sm:text-left">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Upload Video</h1>
+                <p className="text-base-content/70 mt-1 text-sm sm:text-base">Upload and process your videos with cloud optimization</p>
             </div>
 
             {/* Upload Form */}
             <div className="card bg-base-100 shadow-xl">
-                <div className="card-body">
-                    <h2 className="card-title">Video Details</h2>
+                <div className="card-body p-4 sm:p-6">
+                    <h2 className="card-title text-lg sm:text-xl">Video Details</h2>
                     
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                         {/* Title Input */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Video Title</span>
-                                <span className="label-text-alt text-error">*</span>
+                                <span className="label-text text-sm sm:text-base">Video Title</span>
+                                <span className="label-text-alt text-error text-xs sm:text-sm">*</span>
                             </label>
                             <input
                                 type="text"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="input input-bordered w-full"
+                                className="input input-bordered w-full text-sm sm:text-base"
                                 placeholder="Enter a title for your video"
                                 required
                             />
@@ -82,13 +82,13 @@ function VideoUpload() {
                         {/* Description Input */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Description</span>
-                                <span className="label-text-alt">Optional</span>
+                                <span className="label-text text-sm sm:text-base">Description</span>
+                                <span className="label-text-alt text-xs sm:text-sm">Optional</span>
                             </label>
                             <textarea
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                className="textarea textarea-bordered h-20"
+                                className="textarea textarea-bordered h-16 sm:h-20 text-sm sm:text-base"
                                 placeholder="Add a description for your video"
                             />
                         </div>
@@ -96,14 +96,14 @@ function VideoUpload() {
                         {/* File Upload */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Video File</span>
-                                <span className="label-text-alt">MAX. 70MB</span>
+                                <span className="label-text text-sm sm:text-base">Video File</span>
+                                <span className="label-text-alt text-xs sm:text-sm">MAX. 70MB</span>
                             </label>
                             <input
                                 type="file"
                                 accept="video/*"
                                 onChange={(e) => setFile(e.target.files?.[0] || null)}
-                                className="file-input file-input-bordered file-input-primary w-full"
+                                className="file-input file-input-bordered file-input-primary w-full text-sm sm:text-base"
                                 required
                             />
                             {file && (
@@ -122,10 +122,10 @@ function VideoUpload() {
                         </div>
 
                         {/* Upload Button */}
-                        <div className="form-control mt-6">
+                        <div className="form-control mt-4 sm:mt-6">
                             <button
                                 type="submit"
-                                className={`btn btn-primary ${isUploading ? 'loading' : ''}`}
+                                className={`btn btn-primary btn-sm sm:btn-md w-full ${isUploading ? 'loading' : ''}`}
                                 disabled={isUploading || !file}
                             >
                                 {isUploading ? 'Processing...' : 'Upload Video'}
@@ -137,8 +137,8 @@ function VideoUpload() {
 
             {/* Info Card */}
             <div className="card bg-base-100 shadow-xl">
-                <div className="card-body">
-                    <h2 className="card-title">
+                <div className="card-body p-4 sm:p-6">
+                    <h2 className="card-title text-lg sm:text-xl">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>

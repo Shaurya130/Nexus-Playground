@@ -102,47 +102,48 @@ const  VideoCard: React.FC<VideoCardProps> = ({video, onDownload}) => {
                 className="w-full h-full object-cover"
               />
             )}
-            <div className="absolute bottom-2 right-2 bg-base-100 bg-opacity-70 px-2 py-1 rounded-lg text-sm flex items-center">
-              <Clock size={16} className="mr-1" />
+            <div className="absolute bottom-1 sm:bottom-2 right-1 sm:right-2 bg-base-100 bg-opacity-70 px-1 sm:px-2 py-0.5 sm:py-1 rounded text-xs sm:text-sm flex items-center">
+              <Clock size={12} className="sm:w-4 sm:h-4 mr-1" />
               {formatDuration(video.duration)}
             </div>
           </figure>
-          <div className="card-body p-4">
-            <h2 className="card-title text-lg font-bold">{video.title}</h2>
-            <p className="text-sm text-base-content opacity-70 mb-4">
+          <div className="card-body p-3 sm:p-4">
+            <h2 className="card-title text-sm sm:text-lg font-bold line-clamp-2">{video.title}</h2>
+            <p className="text-xs sm:text-sm text-base-content opacity-70 mb-3 sm:mb-4 line-clamp-2">
               {video.description}
             </p>
-            <p className="text-sm text-base-content opacity-70 mb-4">
+            <p className="text-xs sm:text-sm text-base-content opacity-70 mb-3 sm:mb-4">
               Uploaded {dayjs(video.createdAt).fromNow()}
             </p>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
               <div className="flex items-center">
-                <FileUp size={18} className="mr-2 text-primary" />
-                <div>
+                <FileUp size={16} className="mr-2 text-primary flex-shrink-0" />
+                <div className="min-w-0">
                   <div className="font-semibold">Original</div>
-                  <div>{formatSize(Number(video.originalSize))}</div>
+                  <div className="truncate">{formatSize(Number(video.originalSize))}</div>
                 </div>
               </div>
               <div className="flex items-center">
-                <FileDown size={18} className="mr-2 text-secondary" />
-                <div>
+                <FileDown size={16} className="mr-2 text-secondary flex-shrink-0" />
+                <div className="min-w-0">
                   <div className="font-semibold">Compressed</div>
-                  <div>{formatSize(Number(video.compressedSize))}</div>
+                  <div className="truncate">{formatSize(Number(video.compressedSize))}</div>
                 </div>
               </div>
             </div>
-            <div className="flex justify-between items-center mt-4">
-              <div className="text-sm font-semibold">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-3 sm:mt-4 gap-2">
+              <div className="text-xs sm:text-sm font-semibold">
                 Compression:{" "}
                 <span className="text-accent">{compressionPercentage}%</span>
               </div>
               <button
-                className="btn btn-primary btn-sm"
+                className="btn btn-primary btn-xs sm:btn-sm w-full sm:w-auto"
                 onClick={() =>
                   onDownload(getFullVideoUrl(video.publicId), video.title)
                 }
               >
-                <Download size={16} />
+                <Download size={14} className="sm:w-4 sm:h-4" />
+                <span className="sm:hidden">Download</span>
               </button>
             </div>
           </div>

@@ -10,7 +10,6 @@ import {
   LayoutDashboardIcon,
   Share2Icon,
   UploadIcon,
-  ImageIcon,
 } from "lucide-react";
 
 const sidebarItems = [
@@ -50,7 +49,7 @@ export default function AppLayout({
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <header className="w-full bg-base-200">
-          <div className="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="navbar max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="sidebar-drawer"
@@ -61,8 +60,9 @@ export default function AppLayout({
             </div>
             <div className="flex-1">
               <Link href="/" onClick={handleLogoClick}>
-                <div className="btn btn-ghost normal-case text-2xl font-bold tracking-tight cursor-pointer">
-                  Nexus Playground
+                <div className="btn btn-ghost normal-case text-lg sm:text-xl lg:text-2xl font-bold tracking-tight cursor-pointer">
+                  <span className="hidden sm:inline">Nexus Playground</span>
+                  <span className="sm:hidden">Nexus</span>
                 </div>
               </Link>
             </div>
@@ -79,7 +79,7 @@ export default function AppLayout({
                       />
                     </div>
                   </div>
-                  <span className="text-sm truncate max-w-xs lg:max-w-md">
+                  <span className="hidden md:block text-sm truncate max-w-xs lg:max-w-md">
                     {user.username || user.emailAddresses[0].emailAddress}
                   </span>
                   <button
@@ -95,7 +95,7 @@ export default function AppLayout({
         </header>
         {/* Page content */}
         <main className="flex-grow">
-          <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 my-8">
+          <div className="max-w-7xl mx-auto w-full px-2 sm:px-4 lg:px-8 my-4 sm:my-6 lg:my-8">
             {children}
           </div>
         </main>
@@ -104,7 +104,25 @@ export default function AppLayout({
         <label htmlFor="sidebar-drawer" className="drawer-overlay"></label>
         <aside className="bg-base-200 w-64 h-full flex flex-col">
           <div className="flex items-center justify-center py-4">
-            <ImageIcon className="w-10 h-10 text-primary" />
+            <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 4L17 12L7 20V4Z"
+                    fill="white"
+                  />
+                  <rect
+                    x="3"
+                    y="9"
+                    width="3"
+                    height="6"
+                    fill="white"
+                  />
+                </svg>
           </div>
           <ul className="menu p-4 w-full text-base-content flex-grow">
             {sidebarItems.map((item) => (
