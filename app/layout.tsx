@@ -5,6 +5,12 @@ import {
   ClerkProvider
 } from '@clerk/nextjs'
 
+const CLERK_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+
+if (!CLERK_PUBLISHABLE_KEY) {
+  throw new Error("Missing NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable")
+}
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      publishableKey={CLERK_PUBLISHABLE_KEY}
     >
     <html lang="en">
       <body
