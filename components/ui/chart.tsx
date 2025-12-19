@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
-import { TooltipProps } from "recharts";
 
 import { cn } from "./utils";
 
@@ -195,10 +194,10 @@ function ChartTooltipContent({
     >
       {!nestLabel ? tooltipLabel : null}
       <div className="grid gap-1.5">
-        {payload.map((item, index) => {
+        {payload.map((item) => {
           const key = `${nameKey || item.name || item.dataKey || "value"}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
-          const indicatorColor = color || (item.payload as any)?.fill || item.color;
+          const indicatorColor = color || (item.payload as Record<string, unknown>)?.fill || item.color;
 
           return (
             <div
@@ -277,7 +276,7 @@ function ChartLegendContent({
       value: string;
       dataKey: string;
       color?: string;
-      [key: string]: any;
+      [key: string]: unknown;
     }>;
     verticalAlign?: "top" | "bottom";
     hideIcon?: boolean;
@@ -297,7 +296,7 @@ function ChartLegendContent({
         className,
       )}
     >
-      {payload.map((item: any) => {
+      {payload.map((item: { value: string; dataKey: string; color?: string; [key: string]: unknown }) => {
         const key = `${nameKey || item.dataKey || "value"}`;
         const itemConfig = getPayloadConfigFromPayload(config, item, key);
 
