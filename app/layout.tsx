@@ -7,8 +7,8 @@ import {
 
 const CLERK_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
-if (!CLERK_PUBLISHABLE_KEY) {
-  throw new Error("Missing NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable")
+if (!CLERK_PUBLISHABLE_KEY && typeof window !== 'undefined') {
+  console.error("Missing NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable")
 }
 
 
@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider
-      publishableKey={CLERK_PUBLISHABLE_KEY}
+      publishableKey={CLERK_PUBLISHABLE_KEY || ""}
     >
     <html lang="en">
       <body
