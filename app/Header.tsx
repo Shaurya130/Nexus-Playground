@@ -3,27 +3,20 @@
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-
+import Link from "next/link";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export function Header() {
-  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handlesignin = () => {
-    router.push("/sign-in");
-  }
-
-  const handleGetStarted = () => {
-    router.push("/sign-up");
-  }
+  const closeMenu = () => setMobileMenuOpen(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
               <svg
                 width="24"
@@ -32,52 +25,61 @@ export function Header() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M7 4L17 12L7 20V4Z"
-                  fill="white"
-                />
-                <rect
-                  x="3"
-                  y="9"
-                  width="3"
-                  height="6"
-                  fill="white"
-                />
+                <path d="M7 4L17 12L7 20V4Z" fill="white" />
+                <rect x="3" y="9" width="3" height="6" fill="white" />
               </svg>
             </div>
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-semibold">
               Nexus Playground
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-8 md:flex">
-            <a href="#features" className="text-muted-foreground transition-colors hover:text-foreground">
+            <a
+              href="#features"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
               Features
             </a>
-            <a href="#how-it-works" className="text-muted-foreground transition-colors hover:text-foreground">
-              How it Works
-            </a>
-            <a href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">
-              Pricing
-            </a>
-            <a href="#about" className="text-muted-foreground transition-colors hover:text-foreground">
-              About
+
+            <a
+              href="#how-it-works"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              How It Works
             </a>
           </nav>
 
-          {/* CTA Buttons */}
+          {/* Desktop CTA */}
           <div className="hidden items-center gap-4 md:flex">
-            <Button variant="ghost" onClick={handlesignin}>Sign In</Button>
-            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={handleGetStarted}>
-              Get Started
-            </Button>
+            <SignedOut>
+              <Button variant="ghost" asChild>
+                <Link href="/sign-in">Sign In</Link>
+              </Button>
+
+              <Button
+                asChild
+                className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
+              >
+                <Link href="/sign-up">Get Started</Link>
+              </Button>
+            </SignedOut>
+
+            <SignedIn>
+              <Button variant="ghost" asChild>
+                <Link href="/home">Dashboard</Link>
+              </Button>
+
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
           >
             {mobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -91,23 +93,46 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="border-t border-border/50 py-4 md:hidden">
             <nav className="flex flex-col gap-4">
-              <a href="#features" className="text-muted-foreground transition-colors hover:text-foreground">
+              <a
+                href="#features"
+                onClick={closeMenu}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
                 Features
               </a>
-              <a href="#how-it-works" className="text-muted-foreground transition-colors hover:text-foreground">
-                How it Works
+
+              <a
+                href="#how-it-works"
+                onClick={closeMenu}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                How It Works
               </a>
-              <a href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">
-                Pricing
-              </a>
-              <a href="#about" className="text-muted-foreground transition-colors hover:text-foreground">
-                About
-              </a>
+
               <div className="flex flex-col gap-2 pt-2">
-                <Button variant="ghost" onClick={handlesignin}>Sign In</Button>
-                <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90" onClick={handleGetStarted}>
-                  Get Started
-                </Button>
+                <SignedOut>
+                  <Button variant="ghost" asChild onClick={closeMenu}>
+                    <Link href="/sign-in">Sign In</Link>
+                  </Button>
+
+                  <Button
+                    asChild
+                    className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                    onClick={closeMenu}
+                  >
+                    <Link href="/sign-up">Get Started</Link>
+                  </Button>
+                </SignedOut>
+
+                <SignedIn>
+                  <Button variant="ghost" asChild onClick={closeMenu}>
+                    <Link href="/home">Dashboard</Link>
+                  </Button>
+
+                  <div className="pt-2">
+                    <UserButton afterSignOutUrl="/" />
+                  </div>
+                </SignedIn>
               </div>
             </nav>
           </div>
