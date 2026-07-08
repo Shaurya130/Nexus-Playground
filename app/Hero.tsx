@@ -28,24 +28,6 @@ export function Hero() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-accent hover:opacity-90 group"
-              >
-                Start Free Trial
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-primary/20 hover:bg-primary/10 group"
-              >
-                <Play className="mr-2 h-4 w-4" />
-                Watch Demo
-              </Button>
-            </div>
-
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-4">
               <div className="text-center sm:text-left">

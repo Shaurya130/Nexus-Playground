@@ -1,4 +1,6 @@
 import { Upload, Sliders, Download } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const steps = [
   {
@@ -71,12 +73,17 @@ export function HowItWorks() {
               Join thousands of creators and businesses who trust MediaVault for their media storage needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="rounded-lg bg-gradient-to-r from-primary to-accent px-6 py-3 text-white transition-opacity hover:opacity-90">
-                Start Free Trial
-              </button>
-              <button className="rounded-lg border border-primary/20 bg-background/50 px-6 py-3 transition-colors hover:bg-primary/10">
-                Contact Sales
-              </button>
+              <Button asChild className="bg-gradient-to-r from-primary to-accent">
+                <Link href="/sign-up">
+                  Start Free Trial
+                </Link>
+              </Button>
+
+              <Button asChild variant="outline">
+                <Link href="mailto:shaurya.awasthi130@gmail.com?subject=MediaVault%20Sales%20Inquiry">
+                  Contact Sales
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
